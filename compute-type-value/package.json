@@ -1,0 +1,17 @@
+{
+  "name": "compute-type-value",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "esbuild ./index.ts --bundle --minify --platform=node --target=es2020 --outfile=dist/index.js"
+  },
+  "dependencies": {
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.9.0",
+    "esbuild": "^0.24.0"
+  }
+}
