@@ -1,0 +1,37 @@
+name: Build and Publish Artifacts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build bootstrap
+        working-directory: ./bootstrap-go
+        run: make build
+        env:
+          CGO_ENABLED: 0
+
+      - name: Build index.js
+        working-directory: ./compute-type-value
+        run: yarn install && yarn build
+
+      - name: Prepare runtime directory
+        run: |
+          mkdir -p artifacts
+          cp bootstrap-go/build/bootstrap artifacts/runtime/bootstrap
+          cp compute-type-value/dist/index.js artifacts/runtime/index.js
+          cp terraform/aws_lambda_layer.tf artifacts/aws_lambda_layer.tf
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: runtime-artifacts
+          path: artifacts
