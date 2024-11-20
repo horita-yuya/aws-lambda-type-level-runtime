@@ -9,8 +9,6 @@ export function createEntry(args: string[]): {
   const events = JSON.parse(args[3]);
   const absolutePath = args[4];
 
-  console.info("AAAAAAAAAAAA");
-  console.info(handler);
   const splitted = handler.split(".");
 
   if (splitted.length === 2) {
