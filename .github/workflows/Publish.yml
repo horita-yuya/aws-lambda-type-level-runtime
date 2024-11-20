@@ -25,7 +25,6 @@ jobs:
 
       - name: Prepare runtime directory
         run: |
-          mkdir -p tlrt
           mkdir -p tlrt/runtime
           curl -O https://nodejs.org/dist/v20.18.0/node-v20.18.0-linux-x64.tar.xz
           tar -xJf node-v20.18.0-linux-x64.tar.xz --strip-components=1
@@ -33,6 +32,8 @@ jobs:
           cp bootstrap-go/build/bootstrap tlrt/runtime/bootstrap
           cp compute-type-value/dist/index.js tlrt/runtime/index.js
           cp terraform/aws_lambda_layer.tf tlrt/aws_lambda_layer.tf
+          cp terraform/tlrt_sample_index.ts tlrt/tlrt_sample_index.ts
+          cp terraform/tlrt_sample_lambda.tf tlrt/tlrt_sample_lambda.tf
 
       - name: Create tar.gz and zip
         run: |

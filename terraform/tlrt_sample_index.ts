@@ -1,0 +1,1 @@
+export type SampleHandler<EVENT extends { n1: number; n2: number }> = `Received ${EVENT["n1"]} and ${EVENT["n2"]}!`
