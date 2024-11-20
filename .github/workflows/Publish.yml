@@ -26,6 +26,7 @@ jobs:
       - name: Prepare runtime directory
         run: |
           mkdir -p artifacts
+          mkdir -p artifacts/runtime
           cp bootstrap-go/build/bootstrap artifacts/runtime/bootstrap
           cp compute-type-value/dist/index.js artifacts/runtime/index.js
           cp terraform/aws_lambda_layer.tf artifacts/aws_lambda_layer.tf
