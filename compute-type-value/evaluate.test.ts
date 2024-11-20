@@ -3,7 +3,7 @@ import * as fs from "node:fs";
 import { describe, expect, it } from "vitest";
 import { evaluate } from "./evaluate";
 
-describe("evaluate type", () => {
+describe("evaluate type .ts", () => {
   it("standard", () => {
     const type = `
     export type Handler = 1;
@@ -44,5 +44,19 @@ describe("evaluate type", () => {
 
     expect(r1).toBe(0);
     expect(r2).toBe(1);
+  });
+});
+
+describe("evaluate type .d.ts", () => {
+  it("standard", () => {
+    const type = `
+    export type Handler = 1;
+    `.trim();
+    const fileName = `/tmp/${randomUUID()}.d.ts`;
+    fs.writeFileSync(fileName, type);
+
+    const result = evaluate(fileName, "Handler", {});
+
+    expect(result).toBe(1);
   });
 });

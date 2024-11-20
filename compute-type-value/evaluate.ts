@@ -3,18 +3,14 @@ import {
   type LiteralType,
   ModuleKind,
   NewLineKind,
-  NodeBuilderFlags,
   NodeFlags,
-  type PseudoBigInt,
   ScriptTarget,
   SyntaxKind,
-  TypeFormatFlags,
   createCompilerHost,
   createPrinter,
   createProgram,
   createSourceFile,
   factory,
-  isLiteralTypeNode,
   isTypeAliasDeclaration,
 } from "typescript";
 
@@ -43,7 +39,7 @@ function createMain(
               ),
             ]),
           ),
-          factory.createStringLiteral(entryFile),
+          factory.createStringLiteral(entryFile.replace(/\.[^/.]+$/, "")),
         ),
         factory.createTypeAliasDeclaration(
           undefined,

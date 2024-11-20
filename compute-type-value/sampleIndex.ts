@@ -1,4 +1,4 @@
-import type { Sum } from "./sampleSum";
+import type { Sum } from "./sampleSum.d.ts";
 
 type Event = {
   n1: number;
