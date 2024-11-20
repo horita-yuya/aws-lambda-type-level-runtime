@@ -15,7 +15,7 @@ jobs:
 
       - name: Build bootstrap
         working-directory: ./bootstrap-go
-        run: make build
+        run: ./build.sh
         env:
           CGO_ENABLED: 0
 
