@@ -25,14 +25,43 @@ jobs:
 
       - name: Prepare runtime directory
         run: |
-          mkdir -p artifacts
-          mkdir -p artifacts/runtime
-          cp bootstrap-go/build/bootstrap artifacts/runtime/bootstrap
-          cp compute-type-value/dist/index.js artifacts/runtime/index.js
-          cp terraform/aws_lambda_layer.tf artifacts/aws_lambda_layer.tf
+          mkdir -p tlrt
+          mkdir -p tlrt/runtime
+          cp bootstrap-go/build/bootstrap tlrt/runtime/bootstrap
+          cp compute-type-value/dist/index.js tlrt/runtime/index.js
+          cp terraform/aws_lambda_layer.tf tlrt/aws_lambda_layer.tf
 
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
+      - name: Create tar.gz and zip
+        run: |
+          tar -czf tlrt.tar.gz tlrt
+          zip -r tlrt.zip tlrt
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: runtime-artifacts
-          path: artifacts
+          tag_name: tlrt-${{ github.run_number }}
+          release_name: tlrt
+          draft: false
+          prerelease: false
+
+      - name: Upload tar.gz
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./tlrt.tar.gz
+          asset_name: tlrt.tar.gz
+          asset_content_type: application/gzip
+
+      - name: Upload zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create-release.outputs.upload_url }}
+          asset_path: ./tlrt.zip
+          asset_name: tlrt.zip
+          asset_content_type: application/zip
