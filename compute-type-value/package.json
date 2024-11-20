@@ -4,7 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild ./index.ts --bundle --minify --platform=node --target=es2020 --outfile=dist/index.js"
+    "build": "esbuild ./index.ts --bundle --minify --platform=node --target=es2020 --outfile=dist/index.js",
+    "test": "vitest"
   },
   "dependencies": {
     "typescript": "^5.6.3"
@@ -12,6 +13,7 @@
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@types/node": "^22.9.0",
-    "esbuild": "^0.24.0"
+    "esbuild": "^0.24.0",
+    "vitest": "^2.1.5"
   }
 }
