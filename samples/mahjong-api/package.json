@@ -4,14 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "zip": "zip -r mahjong-api.zip index.d.ts node_modules",
+    "build": "tsup index.ts --dts-resolve",
+    "zip": "cp dist/index.d.ts ./ && zip -r mahjong-api.zip index.d.ts",
     "deploy": "aws lambda update-function-code --function-name tlrt-sample --zip-file fileb://mahjong-api.zip"
   },
   "devDependencies": {
-    "typescript": "^5.6.3"
-  },
-  "dependencies": {
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
     "mahjong-kun": "^1.5.0"
   }
 }
