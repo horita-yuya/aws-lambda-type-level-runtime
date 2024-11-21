@@ -36,7 +36,7 @@ Then, you will get the following response.
 
 ## TLRT Components:
 
-### 1. entrypoint
+### 1. bootstrap
 This is a entrypoint called by AWS Lambda. It reads the input from the event and pass it to the function code you deployed.
 
 ### 2. compute-type-value
