@@ -1,0 +1,17 @@
+{
+  "name": "mahjong-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "zip": "zip -r mahjong-api.zip index.d.ts node_modules",
+    "deploy": "aws lambda update-function-code --function-name tlrt-sample --zip-file fileb://mahjong-api.zip"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "mahjong-kun": "^1.5.0"
+  }
+}

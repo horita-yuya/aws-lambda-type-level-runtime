@@ -4,7 +4,8 @@ resource "aws_lambda_function" "sample" {
 
   runtime  = "provided.al2023"
   handler  = "${local.runtime_name}_sample_index.SampleHandler"
-  filename = "/tmp/index.zip"
+  filename         = data.archive_file.sample.output_path
+  source_code_hash = data.archive_file.sample.output_base64sha256
 
   layers = [
     aws_lambda_layer_version.tlrt.arn,
