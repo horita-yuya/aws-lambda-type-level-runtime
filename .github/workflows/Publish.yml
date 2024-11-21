@@ -19,7 +19,7 @@ jobs:
         env:
           CGO_ENABLED: 0
 
-      - name: Build type-evaluate.js
+      - name: Build compute-type-value.js
         working-directory: ./compute-type-value
         run: yarn install && yarn build
 
@@ -30,7 +30,7 @@ jobs:
           tar -xJf node-v20.18.0-linux-x64.tar.xz --strip-components=1
           cp bin/node tlrt/runtime/node
           cp bootstrap-go/build/bootstrap tlrt/runtime/bootstrap
-          cp compute-type-value/dist/type-evaluate.js tlrt/runtime/type-evaluate.js
+          cp compute-type-value/dist/compute-type-value.js tlrt/runtime/compute-type-value.js
           cp terraform/aws_lambda_layer.tf tlrt/aws_lambda_layer.tf
           cp terraform/tlrt_sample_index.ts tlrt/tlrt_sample_index.ts
           cp terraform/tlrt_sample_lambda.tf tlrt/tlrt_sample_lambda.tf

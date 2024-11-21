@@ -41,7 +41,7 @@ func StartLoop() {
 		requestId := header.Get("Lambda-Runtime-Aws-Request-Id")
 		event := string(body)
 
-		nodeRes, err := exec.Command("/opt/node", "/opt/type-evaluate.js", handler, event, lambdaTaskRoot).Output()
+		nodeRes, err := exec.Command("/opt/node", "/opt/compute-type-value.js", handler, event, lambdaTaskRoot).Output()
 
 		if err != nil {
 			panic(err)

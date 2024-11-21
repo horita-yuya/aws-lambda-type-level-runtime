@@ -2,12 +2,46 @@
 
 tlrt is a custom runtime for AWS Lambda that allows you to write lambda function in type level programming.
 
-tlrt is composed of three components:
-1. entrypoint
-This is a entrypoint called by AWS Lambda. It reads the input from the event and pass it to the handler.
+Define your handler function as a Handler type and implement it.
+The following code is an example of a handler function that adds two numbers.
 
-2. compute-type-value
-This reads your handler and compute the value of the handler.
+```typescript
+type Num<N extends number, COUNT extends number[]> = COUNT["length"] extends N
+  ? COUNT
+  : Num<N, [1, ...COUNT]>;
 
-3. lambda-layer (terraform)
+type Sum<N1 extends number, N2 extends number> = [
+  ...Num<N1, []>,
+  ...Num<N2, []>,
+]["length"];
+
+export type Handler<EVENT extends { n1: number; n2: number }> = Sum<
+  EVENT["n1"],
+  EVENT["n2"]
+>;
+```
+
+Upload this code to AWS Lambda and call the lambda function with the following event.
+
+```json
+{
+  "n1": 1,
+  "n2": 2
+}
+```
+
+Then, you will get the following response.
+
+![sample_add](./resources/sample_add.png)
+
+## TLRT Components:
+
+### 1. entrypoint
+This is a entrypoint called by AWS Lambda. It reads the input from the event and pass it to the function code you deployed.
+
+### 2. compute-type-value
+Combines the event passed to the lambda function and the function code you deployed.
+And computed the value of it.
+
+### 3. lambda-layer (terraform)
 To use the above components, you need to create a lambda layer. This terraform module creates a lambda layer for you.

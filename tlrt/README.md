@@ -20,7 +20,7 @@ Your-Terraform-Project
 ├── runtime
 │   ├── bootstrap
 │   ├── node
-│   └── type-evaluate.js
+│   └── compute-type-value.js
 ├── tlrt_sample_index.ts (Optional)
 └── tlrt_sample_lambda.tf (Optional)
 ```
@@ -45,4 +45,4 @@ Output:
 2. runtime
    1. bootstrap
    2. node
-   3. type-evaluate.js
+   3. compute-type-value.js
