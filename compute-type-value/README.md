@@ -1,5 +1,5 @@
 ```shell
-node dist/index.js sampleIndex.Handler '{"n1":1,"n2":2}'  "$(pwd)"
+node dist/type-evaluate.js sampleIndex.Handler '{"n1":1,"n2":2}'  "$(pwd)"
 ```
 
 

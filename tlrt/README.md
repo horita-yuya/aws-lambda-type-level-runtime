@@ -20,7 +20,7 @@ Your-Terraform-Project
 ├── runtime
 │   ├── bootstrap
 │   ├── node
-│   └── index.js
+│   └── type-evaluate.js
 ├── tlrt_sample_index.ts (Optional)
 └── tlrt_sample_lambda.tf (Optional)
 ```
@@ -29,6 +29,13 @@ Your-Terraform-Project
 terraform apply
 
 aws lambda invoke --function-name tlrt-sample --payload '{"n1": 1, "n2": 2}' --cli-binary-format raw-in-base64-out /tmp/res.json && cat /tmp/res.json
+
+Output:
+{
+    "StatusCode": 200,
+    "ExecutedVersion": "$LATEST"
+}
+{"result":"Received 1 and 2!"}
 ```
 
 # TLRT Components
@@ -38,4 +45,4 @@ aws lambda invoke --function-name tlrt-sample --payload '{"n1": 1, "n2": 2}' --c
 2. runtime
    1. bootstrap
    2. node
-   3. index.js
+   3. type-evaluate.js

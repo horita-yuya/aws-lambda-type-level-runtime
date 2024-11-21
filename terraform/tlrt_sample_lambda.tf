@@ -1,15 +1,10 @@
-locals {
-  # Type Level Runtime
-  runtime_name = "tlrt"
-}
-
 resource "aws_lambda_function" "sample" {
   function_name = "${local.runtime_name}-sample"
   role          = aws_iam_role.sample.arn
 
   runtime  = "provided.al2023"
   handler  = "${local.runtime_name}_sample_index.SampleHandler"
-  filename = "${path.module}/index.zip"
+  filename = "/tmp/index.zip"
 
   layers = [
     aws_lambda_layer_version.tlrt.arn,
