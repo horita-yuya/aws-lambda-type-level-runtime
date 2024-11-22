@@ -25,14 +25,18 @@ Upload this code to AWS Lambda and call the lambda function with the following e
 
 ```json
 {
-  "n1": 1,
-  "n2": 2
+  "n1": 9,
+  "n2": 16
 }
 ```
 
 Then, you will get the following response.
 
 ![sample_add](./resources/sample_add.png)
+
+There are only type definition codes, but it works.
+
+You can download [runtime and terraform package](https://github.com/horita-yuya/aws-lambda-type-level-runtime/releases).
 
 ## TLRT Components:
 
